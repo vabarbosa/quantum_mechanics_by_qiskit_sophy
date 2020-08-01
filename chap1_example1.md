@@ -25,10 +25,10 @@ import numpy as np
 
 ```python
 qc = QuantumCircuit(1)
-psi = random_statevector(2).data #1큐빗으로 구성된 양자 회로를 구성합니다.
-init_gate = Initialize(psi)
-qc.append(init_gate, [0] )
-qc.draw('text')
+psi = random_statevector(2).data #상태벡터를 초기화 할 값을 생성합니다
+init_gate = Initialize(psi) #양자 회로에 초기화할 값을 넣기 위해 초기 게이트를 만듭니다
+qc.append(init_gate, [0] ) #양자회로에 초기화할 게이트를 적용합니다
+qc.draw('text') #큐빗이 초기화 된 값을 확인합니다. 아직 회로가 구성되지 않았기 때문에 텍스트로 확인합니다
 ```
 
 
@@ -42,8 +42,8 @@ q_0: ┤ initialize(0.23326+-0.18051j,0.42134+0.8576j) ├
 
 
 ```python
-state = execute(qc,backend).result().get_statevector() # Execute the circuit
-print(state)
+state = execute(qc,backend).result().get_statevector() #상태벡터를 확인하기 위해 계산을 실행합니다.
+print(state) #계산된 결과를 초기화한 값과 비교합니다.
 ```
 
     [0.23326479-0.18051426j 0.42133699+0.85759972j]
@@ -51,8 +51,8 @@ print(state)
 
 
 ```python
-results = execute(qc,backend).result().get_counts()
-plot_histogram(results)
+results = execute(qc,backend).result().get_counts() #중첩된 상태의 확률을 확인하기 위해 계산을 실행합니다.
+plot_histogram(results) #각 기저벡터의 확률 값을 확인합니다.
 
 ```
 
