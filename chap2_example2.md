@@ -25,8 +25,9 @@ qc = QuantumCircuit(1)
 initial_state = [0.+1.j/sqrt(2),1/sqrt(2)+0.j] #본문에 설명한 대로 큐빗을 초기화할 값을 설정합니다.
 qc.initialize(initial_state, 0) #큐빗의 상태벡터를 정해진 값으로 초기화 합니다.
 
-state = execute(qc,backend).result().get_statevector() #양자회로를 계산해서 상태벡터를 가져옵니다.
+backend = Aer.get_backend('statevector_simulator')
 
+state = execute(qc,backend).result().get_statevector() #양자회로를 계산해서 상태벡터를 가져옵니다.
 plot_bloch_multivector(state) #상태벡터를 블로흐 구면에 그려봅니다.
 ```
 
