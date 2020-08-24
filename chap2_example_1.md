@@ -27,6 +27,7 @@ qc.measure_all()
 results =[]
 
 for i in range(1,100):
+    backend = Aer.get_backend('statevector_simulator')
     state = execute(qc,backend).result().get_counts() # Execute the circuit
     for key, value in state.items() :
         results += key
